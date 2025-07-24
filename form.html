@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 40px;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 25px;
+      max-width: 700px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="file"],
+    input[type="url"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .course-category {
+      margin-top: 15px;
+      padding: 10px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .course-category h4 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: #333;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .checkbox-group label {
+      font-weight: normal;
+      display: block;
+      margin-left: 10px;
+      margin-bottom: 5px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .submit-btn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .cancel-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    small {
+      font-size: 11px;
+      color: gray;
+    }
+
+    fieldset {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    legend {
+      font-weight: bold;
+      padding: 0 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>User Registration</h2>
+    <form id="userForm" onsubmit="submitForm(); return false;">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required pattern="^[A-Za-z0-9_]{5,15}$" />
+      <small>Only letters, numbers, underscore. 5–15 characters</small>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required pattern="^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$" />
+      <small>Min 6 characters, 1 capital letter, 1 number</small>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required />
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" min="0" required />
+
+      <label for="mobile">Mobile Number:</label>
+      <input type="tel" id="mobile" name="mobile" required pattern="^\+91[6-9][0-9]{9}$" />
+      <small>Format: +91XXXXXXXXXX (Indian number)</small>
+
+      <label for="creditcard">Credit Card Number:</label>
+      <input type="text" id="creditcard" name="creditcard" required 
+             pattern="^\d{4} \d{4} \d{4} \d{4}$" maxlength="19"
+             placeholder="1234 5678 9012 3456" />
+      <small>Exactly 16 digits with spaces every 4 digits</small>
+
+      <label for="document">Upload Supporting Document (PDF/Image):</label>
+      <input type="file" id="document" name="document" accept=".pdf,.jpg,.png,.jpeg" required />
+      <small>Upload from PC (e.g., ID proof, marksheet)</small>
+
+      <label for="resume">Upload Resume (PDF only):</label>
+      <input type="file" id="resume" name="resume" accept=".pdf" required />
+      <small>Only PDF files are accepted for resumes</small>
+
+      <label for="url">Optional: Website or Portfolio Link</label>
+      <input type="url" id="url" name="url" placeholder="https://yourwebsite.com" />
+      <small>This is optional — you can skip it.</small>
+
+      <!-- Categorized Courses -->
+      <label>Select Your Interests:</label>
+
+      <div class="course-category">
+        <h4>Web Development</h4>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="courses" value="HTML" /> HTML</label>
+          <label><input type="checkbox" name="courses" value="CSS" /> CSS</label>
+          <label><input type="checkbox" name="courses" value="JavaScript" /> JavaScript</label>
+          <label><input type="checkbox" name="courses" value="React" /> React</label>
+          <label><input type="checkbox" name="courses" value="Node.js" /> Node.js</label>
+        </div>
+      </div>
+
+      <div class="course-category">
+        <h4>Data Science</h4>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="courses" value="Python" /> Python</label>
+          <label><input type="checkbox" name="courses" value="Pandas" /> Pandas</label>
+          <label><input type="checkbox" name="courses" value="NumPy" /> NumPy</label>
+          <label><input type="checkbox" name="courses" value="Machine Learning" /> Machine Learning</label>
+          <label><input type="checkbox" name="courses" value="Deep Learning" /> Deep Learning</label>
+        </div>
+      </div>
+
+      <div class="course-category">
+        <h4>Cybersecurity</h4>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="courses" value="Network Security" /> Network Security</label>
+          <label><input type="checkbox" name="courses" value="Ethical Hacking" /> Ethical Hacking</label>
+          <label><input type="checkbox" name="courses" value="Cryptography" /> Cryptography</label>
+        </div>
+      </div>
+
+      <div class="course-category">
+        <h4>Cloud Computing</h4>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="courses" value="AWS" /> AWS</label>
+          <label><input type="checkbox" name="courses" value="Azure" /> Azure</label>
+          <label><input type="checkbox" name="courses" value="Google Cloud" /> Google Cloud</label>
+        </div>
+      </div>
+
+      <!-- User Agreement -->
+      <fieldset>
+        <legend>User Declaration</legend>
+        <label>
+          <input type="checkbox" name="agreement" required />
+          I confirm that all the above information is accurate to the best of my knowledge.
+        </label>
+      </fieldset>
+
+      <!-- Buttons -->
+      <div class="buttons">
+        <button type="submit" class="submit-btn">Submit</button>
+        <button type="button" class="cancel-btn" onclick="clearForm()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function submitForm() {
+      const form = document.getElementById("userForm");
+      const username = form.username.value;
+      const email = form.email.value;
+      const dob = form.dob.value;
+      const age = form.age.value;
+      const mobile = form.mobile.value;
+      const creditcard = form.creditcard.value;
+      const document = form.document.files[0];
+      const resume = form.resume.files[0];
+      const url = form.url.value;
+
+      const selectedCourses = [];
+      form.querySelectorAll('input[name="courses"]:checked').forEach(c => {
+        selectedCourses.push(c.value);
+      });
+
+      alert(`✅ Form Submitted:
+Username: ${username}
+Email: ${email}
+DOB: ${dob}
+Age: ${age}
+Mobile: ${mobile}
+Card: ${creditcard}
+Document: ${document ? document.name : 'None'}
+Resume: ${resume ? resume.name : 'None'}
+Website: ${url || 'Not Provided'}
+Courses: ${selectedCourses.length > 0 ? selectedCourses.join(', ') : 'None'}
+      `);
+    }
+
+    function clearForm() {
+      document.getElementById("userForm").reset();
+    }
+  </script>
+
+</body>
+</html>
